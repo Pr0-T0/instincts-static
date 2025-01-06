@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSTINCT</title>
+    <style>
+        /* CSS - Styles for the page */
+        :root {
+            --background-color: #f0f0f0;
+            --text-color: #333;
+            --card-background: #fff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="dark"] {
+            --background-color: #333;
+            --text-color: #f0f0f0;
+            --card-background: #444;
+            --shadow-color: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        header {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 60px;
+        }
+
+        .header-button {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1rem;
+            text-decoration: underline;
+            cursor: pointer;
+            padding: 0;
+            transition: color 0.3s;
+        }
+
+        .header-button:hover {
+            color: var(--card-background);
+            text-decoration: none;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .theme-toggle:hover {
+            color: var(--card-background);
+        }
+
+        .image-container {
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px var(--shadow-color);
+            transition: transform 0.3s ease;
+            cursor: pointer;
+            margin: 50px auto;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+
+        .image-container:hover {
+            transform: scale(1.05);
+        }
+
+        .image-container:hover img {
+            transform: scale(1.1);
+            filter: brightness(1.2);
+        }
+
+        .motto {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            text-align: center;
+        }
+
+        .card {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease, transform 1s ease, box-shadow 0.3s ease;
+            padding: 20px;
+            margin-top: 30px;
+            background-color: var(--card-background);
+            box-shadow: 0 4px 12px var(--shadow-color);
+            border-radius: 10px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .card.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px var(--shadow-color);
+            transform: translateY(-5px);
+        }
+
+        .card h2, .card h3 {
+            font-size: 1.8rem;
+        }
+
+        .card p {
+            font-size: 1rem;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .team-heading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 40px 0;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            color: var(--text-color);
+        }
+
+        .team-heading::before,
+        .team-heading::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background-color: var(--text-color);
+            margin: 0 20px;
+        }
+
+        @media (max-width: 600px) {
+            .image-container {
+                width: 80%;
+                height: auto;
+            }
+
+            .card {
+                padding: 10px;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>INSTINCT</h1>
+        <div class="header-buttons">
+            <button class="header-button">ACTIVITIES</button>
+            <button class="header-button">LOGS</button>
+        </div>
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">☀️</button>
+    </header>
+    <div class="image-container" id="image-container" aria-expanded="false">
+        <img src="images/image.jpg" alt="Centered Image">
+    </div>
+    <p class="motto">"IT'S YOU V/S YOU"</p>
+
+    <!-- Add card sections -->
+    <div id="card1" class="card">
+        <h2>So what is this all about?</h2>
+        <p>"This page outlines all details regarding our involvement with
+            <strong>MPOWER."</strong>.</p>
+    </div>
+    <div id="card2" class="card">
+        <h3>About MPower</h3>
+        <p>The power communication workshop to unleash the magic within.</p>
+    </div>
+
+    <!-- Meet our Team Section -->
+    <div class="team-heading">Meet our Team</div>
+
+    <!-- Team Members Cards -->
+    <div id="card3" class="card">
+        <div class="profile">
+            <img src="images/placeholder.jpg" alt="Arun">
+            <div>
+                <h3>ARUN</h3>
+                <p>"Innovation distinguishes between a leader and a follower."</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card4" class="card">
+        <div class="profile">
+            <img src="images/placeholder.jpg" alt="Akshaya">
+            <div>
+                <h3>Akshaya</h3>
+                <p>"Creativity is intelligence having fun."</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional team members cards can go here -->
+
+    
+    <div id="card5" class="card">
+        <div class="profile">
+            <img src="images/placeholder.jpg" alt="Aarcha">
+            <div>
+                <h3>Aarcha</h3>
+                <p>"The key to success is to focus on goals, not obstacles."</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card6" class="card">
+        <div class="profile">
+            <img src="images/placeholder.jpg" alt="Abhinav">
+            <div>
+                <h3>Abhinav</h3>
+                <p>"Code is like humor. When you have to explain it, it’s bad."</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card7" class="card">
+        <div class="profile">
+            <img src="images/placeholder.jpg" alt="Arjun">
+            <div>
+                <h3>Arjun</h3>
+                <p>"Believe you can and you're halfway there."</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card8" class="card">
+        <div class="profile">
+            <img src="images/placeholder.jpg" alt="Brahmadathan">
+            <div>
+                <h3>Brahmadathan</h3>
+                <p>"The future belongs to those who believe in the beauty of their dreams."</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card9" class="card">
+        <div class="profile">
+            <img src="images/placeholder.jpg" alt="Nimisha">
+            <div>
+                <h3>Nimisha</h3>
+                <p>"The greatest glory in living lies not in never falling, but in rising every time we fall."</p>
+            </div>
+        </div>
+    </div>
+
+    <div id="card10" class="card">
+        <div class="profile">
+            <img src="images/placeholder.jpg" alt="Sarath">
+            <div>
+                <h3>Sarath</h3>
+                <p>"I find that the harder i work, the more luck i seem to have"</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="team-heading">Comming Soon</div>
+
+    <script>
+        // JavaScript for click-to-show functionality
+        const imageContainer = document.getElementById("image-container");
+        const cards = document.querySelectorAll(".card");
+
+        imageContainer.addEventListener("click", function () {
+            cards.forEach((card) => {
+                card.classList.toggle("show");
+            });
+        });
+
+        // JavaScript for scroll-to-reveal functionality
+        const observer = new IntersectionObserver(
+            (entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("show");
+                    }
+                });
+            },
+            {
+                threshold: 0.5, // Trigger when 50% of the card is visible
+            }
+        );
+
+        cards.forEach((card) => observer.observe(card));
+
+        // JavaScript for theme toggle functionality
+        const themeToggle = document.getElementById("theme-toggle");
+        themeToggle.addEventListener("click", () => {
+            const currentTheme = document.documentElement.getAttribute("data-theme");
+            const newTheme = currentTheme === "dark" ? "light" : "dark";
+            document.documentElement.setAttribute("data-theme", newTheme);
+            themeToggle.textContent = newTheme === "dark" ? "🌙" : "☀️";
+        });
+    </script>
+</body>
+</html>
